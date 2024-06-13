@@ -1,4 +1,5 @@
-# Automação de Relatórios e Envio de Email
+# Projeto criado para relatórios mensais na empresa em que estou
+#Automação de Relatórios e Envio de Email
 
 Este script Python realiza uma série de tarefas automatizadas que incluem:
 1. Conectar-se a um banco de dados SQL Server e executar uma consulta SQL para recuperar dados.
