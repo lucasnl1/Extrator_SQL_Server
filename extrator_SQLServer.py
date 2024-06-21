@@ -38,24 +38,7 @@ def fetch_data():
     try:
         cur = conn.cursor()
         cur.execute('''
-         SELECT 
-	    LOCALIZACAO, 
-	    DATA,
-	    CLI_NOME,
-	    CLI_CPF,
-	    UF,
-	    CIDADE,
-	    VENDEDOR,
-	    PRODUTO,
-	    QUANTIDADE, 
-	    VALOR_TOTAL
-	FROM VW_FAT_DET
-    JOIN CLIENTE C ON CLI_COD = CD_CLI_GER
-    WHERE FOR_CODI = '01076'
-    AND CONVERT(DATETIME, DATA, 103)>= DATEADD(MONTH, DATEDIFF(MONTH, 0, GETDATE()) - 1, 0)
-    AND CONVERT(DATETIME, DATA, 103) < DATEADD(MONTH, DATEDIFF(MONTH, 0, GETDATE()), 0)
-    AND NATUREZA IN ('VEN')
-    ORDER BY DATA ASC
+         SQL A SER EXECUTADO PARA RECOLHIMENTO DOS DADOS
         ''')
         #retorna os dados recolhidos no select
         rows = cur.fetchall()
