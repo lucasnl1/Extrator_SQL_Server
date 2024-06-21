@@ -140,8 +140,8 @@ def send_email_with_attachment(smtp_server, smtp_port, smtp_user, smtp_password,
 # Dados do email
 smtp_server = 'host smtp'
 smtp_port = 'porta smtp' 
-smtp_user = 'email remetente host'
-smtp_password = 'senha email remetente'
+smtp_user = 'email host'
+smtp_password = 'senha email host'
 from_addr = 'email remetente '
 to_addr = 'email receptor'  
 subject = 'assunto'
