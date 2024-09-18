@@ -13,6 +13,7 @@ Para executar este script, você precisará das seguintes bibliotecas Python:
 - `pandas`: Para manipulação e salvamento de dados.
 - `openpyxl`: Para manipulação do arquivo Excel.
 - `smtplib`, `email`: Para envio de email com anexo.
+- `logging`, `sys`: Para gerar arquivo de log de debug.
 
 Você pode instalar as bibliotecas necessárias utilizando o `pip`:
 ```sh
