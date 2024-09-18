@@ -9,6 +9,31 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.mime.base import MIMEBase
 from email import encoders
+import logging
+import sys
+
+# Configurar o logging
+logging.basicConfig(
+    filename='debug_logfile.log',  # Nome do arquivo de log
+    level=logging.DEBUG,  # Definir o nível de logging para DEBUG
+    format='%(asctime)s - %(levelname)s - %(message)s'  # Formato das mensagens de log
+)
+
+# Redirecionar a saída padrão (print) para o log
+class LoggerWriter:
+    def __init__(self, level):
+        self.level = level
+
+    def write(self, message):
+        if message.strip():  # Evitar linhas vazias no log
+            self.level(message.strip())
+
+    def flush(self):  # Necessário para compatibilidade com sys.stdout
+        pass
+
+# Redirecionar sys.stdout (print) e sys.stderr (erros) para o logging
+sys.stdout = LoggerWriter(logging.info)
+sys.stderr = LoggerWriter(logging.error)
 
 #cria a conecxão ao banco
 def get_db_connection():
@@ -116,7 +141,7 @@ def send_email_with_attachment(smtp_server, smtp_port, smtp_user, smtp_password,
    # Cria a mensagem
     msg = MIMEMultipart()
     msg['From'] = from_addr
-    msg['To'] = to_addr
+    msg['To'] = ', '.join(to_addr)
     msg['Subject'] = subject
 
     # Adiciona o corpo do email
@@ -143,7 +168,7 @@ smtp_port = 'porta smtp'
 smtp_user = 'email host'
 smtp_password = 'senha email host'
 from_addr = 'email remetente '
-to_addr = 'email receptor'  
+to_addr = ['email receptor', 'segundo email receptor']  
 subject = 'assunto'
 body = 'corpo do email'
 file_path = 'local do anexo/arquivo'
