@@ -63,7 +63,19 @@ def fetch_data():
     try:
         cur = conn.cursor()
         cur.execute('''
-         SQL A SER EXECUTADO PARA RECOLHIMENTO DOS DADOS
+        SELECT 
+            PRODUTO,
+            SUM(QUANTIDADE) AS TOTAL_QUANTIDADE,
+            SUM(VALOR_TOTAL) AS TOTAL_VALOR_TOTAL
+            FROM VW_FATURAMENTO_DETALHADO
+            JOIN CLIENTE C ON CLI_CODI = COD_CLIENTE_GERAL
+            WHERE FOR_CODI = '01076'
+            AND CONVERT(DATETIME, DATA, 103) >= DATEADD(MONTH, DATEDIFF(MONTH, 0, GETDATE()) - 1, 0)
+            AND CONVERT(DATETIME, DATA, 103) < DATEADD(MONTH, DATEDIFF(MONTH, 0, GETDATE()), 0)
+            AND NATUREZA IN ('VEN', 'BOV')
+            --AND LOCALIZACAO = '001'
+            --AND CFO_CODI IN ('5102','5910')
+        GROUP BY CODIGO_PRODUTO, PRODUTO
         ''')
         #retorna os dados recolhidos no select
         rows = cur.fetchall()
